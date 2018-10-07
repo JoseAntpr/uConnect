@@ -14,4 +14,5 @@ export class UserService {
         map( (data: any) =>  data.user)
       );
   }
+
 }
