@@ -30,8 +30,6 @@ app.post('/user', (req, res) => {
         name: body.name
     });
 
-    console.log('user', user);
-
     user.save((err, userDB) => {
         if ( err ) {
             return res.status(400).json({

@@ -8,8 +8,8 @@ app.get('/connection/:user', (req, res) => {
     let userId = req.params.user;
 
     Connection.find({$or:[{userOne: userId},{userTwo:userId}]})
-    .populate("userOne")
-    .populate("userTwo")
+    .populate("userOne", "name")
+    .populate("userTwo", "name")
     .exec((err, connections) => {
         if ( err ) {
             return res.status(400).json({
@@ -18,9 +18,26 @@ app.get('/connection/:user', (req, res) => {
             });
         }
 
+        connections = connections.map( connection => {
+            let user;
+
+            if( String(connection.userOne._id) === userId ) {
+                user = connection.userTwo;
+            } 
+            
+            if ( String(connection.userTwo._id) === userId ) {
+                user = connection.userOne;
+            }
+            return {
+                connection: connection.connection,
+                user: user
+            }
+        }
+        )
+
         res.status(200).json({
             ok: true,
-            user: connections
+            connections: connections
         });
     });
 });
