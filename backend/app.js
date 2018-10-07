@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // Routes
 app.use(require('./routes/user'));
-
+app.use(require('./routes/connection'));
 
 
 app.listen('3000', () => {
