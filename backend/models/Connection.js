@@ -18,5 +18,7 @@ let connectionSchema = new Schema({
     userTwo: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
+connectionSchema.index({userOne: 1, userTwo: 1}, { unique: true })
+
 module.exports = mongoose.model('Connection', connectionSchema);
 

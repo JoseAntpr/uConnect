@@ -52,13 +52,6 @@ app.post('/connection', (req, res) => {
         userTwo: body.userTwo
     });
 
-    if( body.userOne._id === body.userTwo_id ){
-        res.status(409).json({
-            ok: false,
-            message: 'Connection with same user is not allowed'
-        });
-    }
-
     connection.save(( err, connectionDB ) => {
         if ( err ) {
             return res.status(400).json({
