@@ -16,4 +16,8 @@ export class UserContainerComponent implements OnInit {
     this.userService.getUsers().subscribe( users => this.users = users);
   }
 
+  selectedUser( user ) {
+    console.log('Usuario recibido en container', user);
+  }
+
 }

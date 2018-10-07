@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-body">
-    <div *ngFor="let user of users">
+    <div class="pointer" *ngFor="let user of users" (click)="selectUser(user)">
         <app-user-item [name]="user.name"></app-user-item>
     </div>
   </div>

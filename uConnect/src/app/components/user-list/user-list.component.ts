@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-user-list',
@@ -8,11 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserListComponent implements OnInit {
 
   @Input() users: any;
+  @Output() selectedUser = new EventEmitter<any>();
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  selectUser(user) {
+    console.log('selecciona al usuario ', user);
+    this.selectedUser.emit(user);
   }
 
 }
