@@ -7,6 +7,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AppRoutingModule } from './app.routing';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserContainerComponent } from './components/user-container/user-container.component';
+import { UserItemComponent } from './components/user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UserContainerComponent } from './components/user-container/user-contain
     UserListComponent,
     NavbarComponent,
     NewUserComponent,
-    UserContainerComponent
+    UserContainerComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,
