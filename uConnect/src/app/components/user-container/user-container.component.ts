@@ -28,7 +28,6 @@ export class UserContainerComponent implements OnInit {
     this.userSelected = user;
     this.connectionService.getUserConnections( user ).subscribe( usersConnected => {
       return this.usersConnected = usersConnected;
-
     });
 
   }

@@ -15,4 +15,9 @@ export class UserService {
       );
   }
 
+  createUser( user ) {
+    return this.http.post('http://localhost:3000/user', user)
+      .pipe(map( data =>  console.log(data)));
+  }
+
 }

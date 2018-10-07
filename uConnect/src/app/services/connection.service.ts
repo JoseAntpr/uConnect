@@ -12,8 +12,7 @@ export class ConnectionService {
   getUserConnections( user: any ) {
     return this.http.get(`http://localhost:3000/connection/${user._id}`)
       .pipe(
-        map( data =>  data.connections)
-
+        map( (data: any) =>  data.connections)
       );
   }
 }
