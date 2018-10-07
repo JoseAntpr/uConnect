@@ -46,11 +46,19 @@ app.get('/connection/:user', (req, res) => {
 app.post('/connection', (req, res) => {
     let body = req.body;
 
+    if( body.userOne == body.userTwo) {
+        return res.status(409).json({
+            ok: false,
+            error: 'Not allowed taht UserOne and UserTwo are the same value'
+        });
+    }
+
     let connection =  new Connection({
         connection: body.connection,
         userOne: body.userOne,
         userTwo: body.userTwo
     });
+
 
     connection.save(( err, connectionDB ) => {
         if ( err ) {
