@@ -11,6 +11,7 @@ export class UserContainerComponent implements OnInit {
 
   users: any;
   usersConnected: any;
+  userSelected: any;
 
   constructor(
     private userService: UserService,
@@ -24,7 +25,7 @@ export class UserContainerComponent implements OnInit {
   }
 
   selectedUser( user ) {
-    console.log('Usuario recibido en container', user);
+    this.userSelected = user;
     this.connectionService.getUserConnections( user ).subscribe( usersConnected => {
       return this.usersConnected = usersConnected;
 
