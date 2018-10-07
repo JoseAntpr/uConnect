@@ -26,6 +26,8 @@ app.get('/user', (req, res) => {
 app.post('/user', (req, res) => {
     let body = req.body;
 
+    console.log(body);
+
     let user = new User({
         name: body.name
     });
