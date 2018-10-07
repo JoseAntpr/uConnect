@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { AppRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
