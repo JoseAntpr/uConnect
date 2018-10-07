@@ -8,10 +8,12 @@ import { UserService } from '../../services/user.service';
 })
 export class UserContainerComponent implements OnInit {
 
+  users: any;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe( res => console.log(res));
+    this.userService.getUsers().subscribe( users => this.users = users);
   }
 
 }

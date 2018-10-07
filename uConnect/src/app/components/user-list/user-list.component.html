@@ -1,5 +1,7 @@
 <div class="card">
   <div class="card-body">
-    <app-user-item></app-user-item>
+    <div *ngFor="let user of users">
+        <app-user-item [name]="user.name"></app-user-item>
+    </div>
   </div>
 </div>
