@@ -10,6 +10,7 @@ export class UserListComponent {
 
   @Input() users;
   @Output() selectedUser = new EventEmitter<User>();
+  @Output() userSelectedToConnect = new EventEmitter<User>();
   userConnect;
 
   constructor() {
@@ -21,6 +22,7 @@ export class UserListComponent {
 
   connectUserSelected(user) {
     this.userConnect = user;
+    this.userSelectedToConnect.emit(user);
   }
 
 }

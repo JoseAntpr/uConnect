@@ -14,6 +14,7 @@ export class UserContainerComponent implements OnInit {
   users: User[];
   usersConnected: User[];
   userSelected: User;
+  secondaryListTitle: string;
 
   constructor(
     private userService: UserService,
@@ -29,10 +30,15 @@ export class UserContainerComponent implements OnInit {
 
   selectedUser( user: User ) {
     this.userSelected = user;
+    this.secondaryListTitle = `Connected with:  ${user.name}`;
     this.connectionService.getUserConnections( user ).subscribe( (usersConnected: User[]) => {
       return this.usersConnected = usersConnected;
     });
 
+  }
+
+  connection( user: User) {
+    this.secondaryListTitle = `Connect one user with ${user.name}`;
   }
 
 }

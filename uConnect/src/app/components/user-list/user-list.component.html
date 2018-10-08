@@ -1,8 +1,11 @@
 <div class="card h-75 overflow">
   <div class="card-body">
-    <div class="pointer mt-2" *ngFor="let user of users" (click)="selectUser(user)">
-        <p *ngIf="user.connection">Connection: <strong>{{ user.connection }}</strong></p>
-        <app-user-item [name]=" user.connection ? user.user.name : user.name"></app-user-item>
+    <div class="mt-2" *ngFor="let user of users">
+      <div class="pointer" (click)="selectUser(user)">
+          <p *ngIf="user.connection">Connection: <strong>{{ user.connection }}</strong></p>
+          <app-user-item [name]="user.name" [userSelected]="user === userConnect"></app-user-item>
+      </div>
+        <button *ngIf="!user.connection" (click)="connectUserSelected( user )" class="btn btn-warning btn-block">Connect</button>
     </div>
   </div>
 </div>

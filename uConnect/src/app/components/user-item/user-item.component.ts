@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UserItemComponent implements OnInit {
 
   @Input() name: string;
-  @Input() bgColor: string;
+  @Input() userSelected: boolean;
 
   constructor() { }
 
