@@ -11,10 +11,14 @@ export class UserService {
   constructor( private http: HttpClient ) { }
 
   getUsers() {
+    this.arrayUser.length = 0;
     return this.http.get('http://localhost:4000/user')
       .pipe(
-        map( data => {
-          this.arrayUser.push(new User(data));
+        map( (data: any) => {
+          data.user.forEach( user => {
+            this.arrayUser.push(new User(user));
+          });
+          return this.arrayUser;
         })
       );
   }

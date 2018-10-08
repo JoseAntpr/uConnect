@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ConnectionService } from '../../services/connection.service';
 
+import { User } from './../../models/User.model';
+
 @Component({
   selector: 'app-user-container',
   templateUrl: './user-container.component.html',
@@ -9,9 +11,9 @@ import { ConnectionService } from '../../services/connection.service';
 })
 export class UserContainerComponent implements OnInit {
 
-  users: any;
-  usersConnected: any;
-  userSelected: any;
+  users: User[];
+  usersConnected: User[];
+  userSelected: User;
 
   constructor(
     private userService: UserService,
@@ -19,14 +21,15 @@ export class UserContainerComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe( users => {
+    this.userService.getUsers().subscribe( (users: User[]) => {
+      console.log(users);
       return this.users = users;
     });
   }
 
-  selectedUser( user ) {
+  selectedUser( user: User ) {
     this.userSelected = user;
-    this.connectionService.getUserConnections( user ).subscribe( usersConnected => {
+    this.connectionService.getUserConnections( user ).subscribe( (usersConnected: User[]) => {
       return this.usersConnected = usersConnected;
     });
 

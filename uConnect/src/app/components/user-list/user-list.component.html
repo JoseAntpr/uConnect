@@ -4,9 +4,9 @@
       {{ user | json }}  {{ userConnect | json }}
       <div class="pointer" (click)="selectUser(user)">
           <p *ngIf="user.connection">Connection: <strong>{{ user.connection }}</strong></p>
-          <app-user-item [name]=" user.connection ? user.user.name : user.name"></app-user-item>
+          <app-user-item [name]="user.name" [bgColor]="user === userConnect ? 'red': ''"></app-user-item>
       </div>
-      <button class="btn btn-warning btn-block" (click)="connectUserSelected(user)">Connect</button>
+      <button *ngIf="!user.connection" class="btn btn-warning btn-block" (click)="connectUserSelected(user)">Connect</button>
     </div>
   </div>
 </div>
