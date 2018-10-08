@@ -75,12 +75,7 @@ app.get("/connection/:user", (req, res) => {
 
           res.status(200).json({
             ok: true,
-            connections: users.map( u => {
-                return {
-                    connection: connection.connection,
-                    user: u
-                }
-            })
+            user: users
           });
         });
       });
