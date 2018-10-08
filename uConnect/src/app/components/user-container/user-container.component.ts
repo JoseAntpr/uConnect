@@ -39,6 +39,9 @@ export class UserContainerComponent implements OnInit {
 
   connection( user: User) {
     this.secondaryListTitle = `Connect one user with ${user.name}`;
+    this.connectionService.getUserNotConnected( user ).subscribe( (usersNotConnected: User[]) => {
+      return this.usersConnected = usersNotConnected;
+    });
   }
 
 }
