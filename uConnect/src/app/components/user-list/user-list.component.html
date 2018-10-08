@@ -1,5 +1,5 @@
-<div class="card">
-  <div class="card-body">
+<div class="card h-75">
+  <div class="card-body overflow ">
     <div class="mt-2" *ngFor="let user of users">
       {{ user | json }}  {{ userConnect | json }}
       <div class="pointer" (click)="selectUser(user)">
