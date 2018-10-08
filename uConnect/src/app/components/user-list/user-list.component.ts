@@ -1,24 +1,26 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { User } from '../../models/User.model';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent {
 
-  @Input() users: any;
-  @Output() selectedUser = new EventEmitter<any>();
+  @Input() users;
+  @Output() selectedUser = new EventEmitter<User>();
+  userConnect;
 
   constructor() {
   }
 
-  ngOnInit() {
+  selectUser(user: User) {
+    this.selectedUser.emit(user);
   }
 
-  selectUser(user) {
-    console.log('selecciona al usuario ', user);
-    this.selectedUser.emit(user);
+  connectUserSelected(user) {
+    this.userConnect = user;
   }
 
 }
