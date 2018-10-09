@@ -44,7 +44,6 @@ app.get("/connected/:user", (req, res) => {
 
 app.get("/connection/:user", (req, res) => {
   let userId = req.params.user;
-
   Connection.find({ $or: [{ userOne: userId }, { userTwo: userId }] })
     .populate("userOne", "name")
     .populate("userTwo", "name")
@@ -53,6 +52,15 @@ app.get("/connection/:user", (req, res) => {
         return res.status(400).json({
           ok: false,
           error: err
+        });
+      }
+
+      if(connections.length === 0){
+        User.find({ "_id": { $ne: userId } }, (err, usersDB) => {
+          res.status(200).json({
+            ok: true,
+            user: usersDB
+          });
         });
       }
 
