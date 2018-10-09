@@ -9,7 +9,7 @@ import { User } from '../../models/User.model';
 export class UserListComponent {
 
   @Input() users;
-  @Input() listType = 'primary';
+  @Input() listType = null;
   @Output() selectedUser = new EventEmitter<User>();
   @Output() userSelectedToConnect = new EventEmitter<User>();
   userConnect;
@@ -18,6 +18,7 @@ export class UserListComponent {
   }
 
   selectUser(user: User) {
+    this.userConnect = null;
     this.selectedUser.emit(user);
   }
 
