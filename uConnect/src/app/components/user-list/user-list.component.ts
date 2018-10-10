@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/User.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -11,8 +12,12 @@ export class UserListComponent {
   @Input() users;
   @Input() listType = null;
   @Output() selectedUser = new EventEmitter<User>();
-  @Output() userSelectedToConnect = new EventEmitter<User>();
-  userConnect;
+  @Output() SelectedUserForConnection = new EventEmitter<User>();
+  @Output() userSelectedForConnect = new EventEmitter<Object>();
+  form = new FormGroup({
+    connection: new FormControl('FRIENDS', Validators.required)
+  });
+  userConnect: User;
 
   constructor() {
   }
@@ -22,9 +27,14 @@ export class UserListComponent {
     this.selectedUser.emit(user);
   }
 
-  connectUserSelected(user) {
+  addUserConnection(user) {
     this.userConnect = user;
-    this.userSelectedToConnect.emit(user);
+    this.SelectedUserForConnection.emit(user);
+  }
+
+  connectUser( user: User ) {
+    const connection = this.form.value.connection;
+    this.userSelectedForConnect.emit({ userTwo: user, connection});
   }
 
 }

@@ -2,10 +2,24 @@
   <div class="card-body">
     <div class="mt-2" *ngFor="let user of users">
       <div class="pointer" (click)="selectUser(user)">
-          <p *ngIf="user.connection">Connection: <strong>{{ user.connection }}</strong></p>
-          <app-user-item [name]="user.name" [userSelected]="user === userConnect"></app-user-item>
+        <p *ngIf="user.connection">Connection: <strong>{{ user.connection }}</strong></p>
+        <app-user-item [name]="user.name" [userSelected]="user === userConnect"></app-user-item>
       </div>
-        <button *ngIf="listType == null" (click)="connectUserSelected( user )" class="btn btn-warning btn-block">Connect</button>
+      <button *ngIf="listType == null" [disabled]="user === userConnect" (click)="addUserConnection( user )" class="btn btn-warning btn-block mt-1">Add
+        Connection</button>
+      <form *ngIf="listType" [formGroup]="form" (ngSubmit)="connectUser( user )" class="form-row mt-1">
+        <div class="col-6">
+            <select class="custom-select" formControlName="connection">
+                <option value="FAMILY">Family</option>
+                <option value="FRIENDS">Friends</option>
+                <option value="UNFAMILIAR">UnFamiliar</option>
+              </select>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-info btn-block">Connect</button>
+        </div>
+        
+      </form>
     </div>
   </div>
 </div>

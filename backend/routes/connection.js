@@ -91,11 +91,8 @@ app.get("/connection/:user", (req, res) => {
 });
 
 app.post("/connection", (req, res) => {
-  let body = req.body;
-  console.log(body);
   console.log(req.body);
-  console.log(body.userOne == body.userTwo);
-  console.log(body.userOne, body.userTwo);
+  let body = req.body;
   if (body.userOne == body.userTwo) {
     return res.status(409).json({
       ok: false,

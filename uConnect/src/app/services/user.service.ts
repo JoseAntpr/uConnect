@@ -7,18 +7,15 @@ import { User } from './../models/User.model';
 })
 export class UserService {
 
-  arrayUser = new Array<User> ();
   constructor( private http: HttpClient ) { }
 
   getUsers() {
-    this.arrayUser.length = 0;
     return this.http.get('http://localhost:4000/user')
       .pipe(
         map( (data: any) => {
-          data.user.forEach( user => {
-            this.arrayUser.push(new User(user));
+          return data.user.map( user => {
+            return new User(user);
           });
-          return this.arrayUser;
         })
       );
   }

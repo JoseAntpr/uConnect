@@ -39,12 +39,18 @@ export class UserContainerComponent implements OnInit {
 
   }
 
-  connection( user: User) {
+  addConnection( user: User) {
     this.secondaryListTitle = `Connect one user with ${user.name}`;
     this.listType = false;
+    this.userSelected = user;
     this.connectionService.getUserNotConnected( user ).subscribe( (usersNotConnected: User[]) => {
       return this.usersConnected = usersNotConnected;
     });
+  }
+
+  connect( connection ) {
+    console.log(this.userSelected, connection);
+    this.connectionService.connection({userOne: this.userSelected, ...connection}).subscribe();
   }
 
 }
