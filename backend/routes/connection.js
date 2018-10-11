@@ -55,18 +55,8 @@ app.get("/connection/:user", (req, res) => {
         });
       }
 
-      if(connections.length === 0){
-        User.find({ "_id": { $ne: userId } }, (err, usersDB) => {
-          res.status(200).json({
-            ok: true,
-            user: usersDB
-          });
-        });
-      }
-
       connections = connections.map(connection => {
         let user;
-        let users;
 
         if (String(connection.userOne._id) === userId) {
           user = connection.userTwo;
@@ -76,22 +66,36 @@ app.get("/connection/:user", (req, res) => {
           user = connection.userOne;
         }
 
-        User.find((err, usersDB) => {
-          users = usersDB.filter(u => {
-              return u.id !== user.id && u.id !== userId;
-          });
+        return user;
+      });
 
-          res.status(200).json({
-            ok: true,
-            user: users
-          });
+
+      User.find({ _id: { $ne: userId } }, (err, usersDB) => {
+
+        let users;
+
+        if (connections.length === 0) {
+          users = usersDB
+        } else {
+
+          users = connections.map((user, index) => {
+            let res = usersDB.filter(u => {
+              return u._id.toString() !== user._id.toString();
+            });
+            usersDB = res;
+            return res;
+          })[connections.length-1];
+        }
+
+        return res.status(200).json({
+          ok: true,
+          users: users
         });
       });
     });
 });
 
 app.post("/connection", (req, res) => {
-  console.log(req.body);
   let body = req.body;
   if (body.userOne == body.userTwo) {
     return res.status(409).json({
@@ -116,7 +120,7 @@ app.post("/connection", (req, res) => {
 
     res.status(200).json({
       ok: true,
-      user: connectionDB
+      users: connectionDB
     });
   });
 });
