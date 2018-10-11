@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { ConnectionService } from '../../services/connection.service';
+import { UserService } from '../../../services/user.service';
+import { ConnectionService } from '../../../services/connection.service';
+import { User } from 'src/app/models/User.model';
 
-import { User } from './../../models/User.model';
 
 @Component({
   selector: 'app-user-container',

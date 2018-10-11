@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { User } from '../../models/User.model';
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { User } from 'src/app/models/User.model';
 
 @Component({
   selector: 'app-user-list',

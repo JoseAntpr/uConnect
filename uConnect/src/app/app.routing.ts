@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { NewUserComponent } from './components/new-user/new-user.component';
-import { UserContainerComponent } from './components/user-container/user-container.component';
+import { UserContainerComponent } from './components/user/user-container/user-container.component';
+import { NewUserComponent } from './components/user/new-user/new-user.component';
+
 
 
 
