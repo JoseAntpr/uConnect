@@ -7,7 +7,7 @@
       </div>
       <button *ngIf="listType == null" [disabled]="user === userConnect" (click)="addUserConnection( user )" class="btn btn-warning btn-block mt-1">Add
         Connection</button>
-      <form *ngIf="listType" [formGroup]="form" (ngSubmit)="connectUser( user )" class="form-row mt-1">
+      <form *ngIf="listType && !user.connection" [formGroup]="form" (ngSubmit)="connectUser( user )" class="form-row mt-1">
         <div class="col-6">
             <select class="custom-select" formControlName="connection">
                 <option value="FAMILY">Family</option>

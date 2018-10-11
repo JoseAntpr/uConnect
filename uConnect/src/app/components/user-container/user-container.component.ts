@@ -50,7 +50,10 @@ export class UserContainerComponent implements OnInit {
 
   connect( connection ) {
     console.log(this.userSelected, connection);
-    this.connectionService.connection({userOne: this.userSelected, ...connection}).subscribe();
+    this.connectionService.connection({userOne: this.userSelected, ...connection}).
+    subscribe(() =>  {
+      this.usersConnected =  this.usersConnected.filter((u: User) => connection.userTwo._id !== u._id);
+    });
   }
 
 }
