@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '../models/User.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ConnectionService {
   constructor(private http: HttpClient) {}
 
   getUserConnections(user: User) {
-    return this.http.get(`http://localhost:4000/connected/${user._id}`).pipe(
+    return this.http.get(`${environment.api.url}connected/${user._id}`).pipe(
       map((data: any) => {
         return data.connections.map(userConnect => {
           return new User(userConnect);
@@ -20,7 +21,7 @@ export class ConnectionService {
   }
 
   getUserNotConnected(user: User) {
-    return this.http.get(`http://localhost:4000/connection/${user._id}`).pipe(
+    return this.http.get(`${environment.api.url}connection/${user._id}`).pipe(
       map((data: any) => {
         return data.users.map(userConnect => {
           return new User(userConnect);
@@ -30,7 +31,7 @@ export class ConnectionService {
   }
 
   connection(connection) {
-    return this.http.post('http://localhost:4000/connection', connection).pipe(
+    return this.http.post(`${environment.api.url}connection`, connection).pipe(
       map((data: any) => {
         console.log(data);
       })
