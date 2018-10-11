@@ -1,7 +1,11 @@
 <div class="card h-75 overflow">
   <div class="card-body">
-    <div *ngIf="listType && users.length === 0">
-      <p>No tienes usuarios con los que <strong>conectarte</strong></p>
+    <div *ngIf="users.length === 0">
+      <p>
+        No tienes usuarios
+        <strong *ngIf="!listType">para conectar</strong>
+        <strong *ngIf="listType">conectados</strong>
+      </p>
     </div>
     <div class="mt-2" *ngFor="let user of users">
       <div class="pointer" (click)="selectUser(user)">
