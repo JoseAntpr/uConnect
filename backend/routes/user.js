@@ -4,45 +4,41 @@ const app = express();
 
 const User = require('../models/User');
 
-app.get('/user', (req, res) => {
+app.get('/user', async (req, res, next) => {
 
-    User.find( (err, users) => {
-        if ( err ) {
-            return res.status(400).json({
-                ok: false,
-                error: err
-            });
-        }
+    try{
+        let users = await User.find({});
 
         res.status(200).json({
             ok: true,
             user: users
         });
-    });
+
+    }catch (e) {
+        e.status = 400;
+        return next(e);
+    }
 
 });
 
 
-app.post('/user', (req, res) => {
+app.post('/user', async (req, res, next) => {
     let body = req.body;
 
     let user = new User({
         name: body.name
     });
-
-    user.save((err, userDB) => {
-        if ( err ) {
-            return res.status(400).json({
-                ok: false,
-                error: err
-            });
-        }
+    try {
+        let userDB = await user.save();
 
         res.status(200).json({
             ok: true,
             user: userDB
         });
-    })
+    }catch (e) {
+        e.status = 400;
+        return next(e);
+    }
 });
 
 module.exports = app;
