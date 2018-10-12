@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+// Services
 import { UserService } from '../../../services/user.service';
 import { ConnectionService } from '../../../services/connection.service';
+
+// Models
 import { User } from 'src/app/models/User.model';
 
 
@@ -20,7 +24,7 @@ export class UserContainerComponent implements OnInit {
   constructor(
     private userService: UserService,
     private connectionService: ConnectionService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.userService.getUsers().subscribe( (users: User[]) => {
@@ -49,11 +53,10 @@ export class UserContainerComponent implements OnInit {
   }
 
   connect( connection ) {
-    console.log(this.userSelected, connection);
     this.connectionService.connection({userOne: this.userSelected, ...connection}).
-    subscribe(() =>  {
-      this.usersConnected =  this.usersConnected.filter((u: User) => connection.userTwo._id !== u._id);
-    });
+      subscribe(() =>  {
+        this.usersConnected =  this.usersConnected.filter((u: User) => connection.userTwo._id !== u._id);
+      });
   }
 
 }

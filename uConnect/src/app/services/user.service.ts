@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { User } from './../models/User.model';
-import { environment } from '../../environments/environment';
-@Injectable({
-  providedIn: 'root'
-})
 
+// RxJS
+import { map } from 'rxjs/operators';
+
+// Models
+import { User } from './../models/User.model';
+
+// Environment
+import { environment } from '../../environments/environment';
+
+@Injectable()
 export class UserService {
 
   constructor( private http: HttpClient ) { }

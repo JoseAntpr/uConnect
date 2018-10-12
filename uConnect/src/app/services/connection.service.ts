@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
+// RxJS
 import { map } from 'rxjs/operators';
+
+// Model
 import { User } from '../models/User.model';
+
+// Environment
 import { environment } from '../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ConnectionService {
   constructor(private http: HttpClient) {}
 

@@ -3,15 +3,20 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AppComponent } from './app.component';
-import { UserListComponent } from './components/user/user-container/user-list/user-list.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
+// Modules
 import { AppRoutingModule } from './app.routing';
+
+// Componentes
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { UserContainerComponent } from './components/user/user-container/user-container.component';
+import { UserListComponent } from './components/user/user-container/user-list/user-list.component';
+import { UserItemComponent } from './components/user/user-container/user-list/user-item/user-item.component';
 import { NewUserComponent } from './components/user/new-user/new-user.component';
 
-import { UserItemComponent } from './components/user/user-container/user-list/user-item/user-item.component';
+// Services
+import { ConnectionService } from './services/connection.service';
 import { UserService } from './services/user.service';
-import { UserContainerComponent } from './components/user/user-container/user-container.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,8 @@ import { UserContainerComponent } from './components/user/user-container/user-co
     ReactiveFormsModule
   ],
   providers: [
-    UserService
+    UserService,
+    ConnectionService
   ],
   bootstrap: [AppComponent]
 })

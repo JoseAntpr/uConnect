@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+// Services
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-new-user',
@@ -17,7 +19,7 @@ export class NewUserComponent implements OnInit {
   constructor(
     private http: UserService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
