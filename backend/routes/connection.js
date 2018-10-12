@@ -5,6 +5,11 @@ const app = express();
 const Connection = require("../models/Connection");
 const User = require("../models/User");
 
+const connectionByType = async ( type ) => {
+  console.log(await Connection.count({connection: type}));
+  return await Connection.count({connection: type})
+}
+
 app.get("/connected/:user", async (req, res, next) => {
   let userId = req.params.user;
 
@@ -77,6 +82,18 @@ app.get("/connection/:user", async (req, res, next) => {
   }
 });
 
+app.get("/stats", async (req, res, next) => {
+  return res.status(200).json({
+    ok: true,
+    stats: {
+      friends: await connectionByType('FRIENDS'),
+      family: await connectionByType('FAMILY'),
+      Unfamily: await connectionByType('UNFAMILIAR')
+    }
+  });
+
+});
+
 app.post("/connection", async (req, res, next) => {
   let body = req.body;
 
@@ -105,5 +122,6 @@ app.post("/connection", async (req, res, next) => {
     return next(e);
   }
 });
+
 
 module.exports = app;
