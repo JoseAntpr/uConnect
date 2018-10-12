@@ -13,5 +13,6 @@ conn.once('open', () => {
     console.log("Mongodb connected")
 });
 
-
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
 mongoose.connect(localConfig.bd.database);

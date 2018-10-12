@@ -1,7 +1,10 @@
+require('./config/config');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+
 
 // Conection with Database
 require('./lib/mongooseConnect');
@@ -27,6 +30,6 @@ app.use( (err, req, res, next) => {
 })
 
 
-app.listen('4000', () => {
-    console.log('Listen in port: ', 4000);
+app.listen(process.env.PORT, () => {
+    console.log('Listen in port: ', process.env.PORT);
 });
