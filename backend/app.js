@@ -19,6 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(require('./routes/user'));
 app.use(require('./routes/connection'));
 
+// Error Handler
+app.use( (err, req, res, next) => {
+    res.status(err.status || 500 );
+
+    return res.json({ ok: false, error: err.message});
+})
+
 
 app.listen('4000', () => {
     console.log('Listen in port: ', 4000);
