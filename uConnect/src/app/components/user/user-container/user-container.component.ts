@@ -20,6 +20,12 @@ export class UserContainerComponent implements OnInit {
   userSelected: User;
   secondaryListTitle: string;
   listType = true;
+  stats: any = {
+    'labels': ['FRIENDS', 'FAMILY', 'UNFAMILIAR'],
+    'data': [24, 30, 46],
+    'type': 'doughnut',
+    'leyenda': 'Numero de conexiones'
+  };
 
   constructor(
     private userService: UserService,
@@ -30,6 +36,7 @@ export class UserContainerComponent implements OnInit {
     this.userService.getUsers().subscribe( (users: User[]) => {
       return this.users = users;
     });
+    this.getStats();
   }
 
   selectedUser( user: User ) {
@@ -55,7 +62,14 @@ export class UserContainerComponent implements OnInit {
     this.connectionService.connection({userOne: this.userSelected, ...connection}).
       subscribe(() =>  {
         this.usersConnected =  this.usersConnected.filter((u: User) => connection.userTwo._id !== u._id);
+        this.getStats();
       });
+  }
+
+  getStats() {
+    this.connectionService.getStats().subscribe((data) => {
+      this.stats.data = Object.values(data);
+    });
   }
 
 }

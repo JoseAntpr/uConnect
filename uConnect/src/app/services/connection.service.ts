@@ -41,4 +41,13 @@ export class ConnectionService {
       })
     );
   }
+
+  getStats() {
+    return this.http.get(`${environment.api.url}stats`)
+    .pipe(
+      map((data: any) => {
+        return data.stats;
+      })
+    );
+  }
 }
