@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Routes
 app.use(require('./routes/user'));
 app.use(require('./routes/connection'));
+app.use(require('./routes/documentation'));
 
 // Error Handler
 app.use( (err, req, res, next) => {
