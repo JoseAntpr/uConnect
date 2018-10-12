@@ -1,0 +1,29 @@
+{
+  "name": "algorath",
+  "version": "1.0.0",
+  "description": "## Getting Started",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
+  },
+  "scripts": {
+    "start": "npm-run-all -p start:*",
+    "install": "npm-run-all -p install:*",
+    "start:front": "cd uConnect && npm start",
+    "start:backend": "cd backend && npm start",
+    "install:front": "cd uConnect && npm install",
+    "install:backend": "cd backend && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseAntpr/uConnect.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseAntpr/uConnect/issues"
+  },
+  "homepage": "https://github.com/JoseAntpr/uConnect#readme"
+}
